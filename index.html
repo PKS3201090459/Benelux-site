@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benelux - Инновационные IT-решения</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="benelux.png" type="image/x-icon">
+    <link rel="shortcut icon" href="benelux.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQ0NDC5FB7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-LQ0NDC5FB7');
+    </script>
+</head>
+
+<body>
+
+    <div class="fx-vignette" aria-hidden="true"></div>
+    <header id="header">
+        <nav>
+            <div class="nav-logo-container" onclick="scrollToTop()">
+                <img src="images/new-logo.png" alt="Benelux Logo" class="nav-logo">
+            </div>
+            
+            <div class="nav-center" id="navCenter">
+                <div class="search-bar-premium mobile-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="siteSearchMobile" placeholder="Поиск..." data-i18n="search_placeholder">
+                    <div id="searchDropdownMobile" class="search-dropdown"></div>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="#home" onclick="closeMenu()" data-i18n="nav_home">Главная</a></li>
+                    <li><a href="#services" onclick="closeMenu()" data-i18n="nav_services">Услуги</a></li>
+                    <li><a href="#map" onclick="closeMenu()" data-i18n="nav_map">Карта</a></li>
+                    <li><a href="#projects" onclick="closeMenu()" data-i18n="nav_projects">Проекты</a></li>
+                    <li><a href="#team" onclick="closeMenu()" data-i18n="nav_team">Команда</a></li>
+                    <li><a href="#about" onclick="closeMenu()" data-i18n="nav_about">О нас</a></li>
+                    <li><a href="#info-hub" onclick="closeMenu()" data-i18n="nav_process">Инфо-центр</a></li>
+                    <li><a href="#testimonials" onclick="closeMenu()" data-i18n="nav_testimonials">Отзывы</a></li>
+                    <li><a href="#contact" onclick="closeMenu()" data-i18n="nav_contact">Контакты</a></li>
+                </ul>
+
+                <div class="language-switcher-mobile">
+                    <button class="lang-btn active" id="langRuMobile" onclick="changeLanguage('ru')">RU</button>
+                    <button class="lang-btn" id="langKkMobile" onclick="changeLanguage('kk')">ҚЗ</button>
+                    <button class="lang-btn" id="langEnMobile" onclick="changeLanguage('en')">EN</button>
+                </div>
+            </div>
+
+            <div class="nav-right-container">
+                <div class="search-bar-premium">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="siteSearch" placeholder="Поиск по сайту..." data-i18n="search_placeholder">
+                    <div id="searchDropdown" class="search-dropdown"></div>
+                </div>
+                <div class="language-switcher-desktop">
+                    <button class="lang-btn active" id="langRu" onclick="changeLanguage('ru')">RU</button>
+                    <button class="lang-btn" id="langKk" onclick="changeLanguage('kk')">ҚЗ</button>
+                    <button class="lang-btn" id="langEn" onclick="changeLanguage('en')">EN</button>
+                </div>
+            </div>
+
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-watermark" aria-hidden="true">
+            <img src="images/new-logo.png" alt="Benelux Logo Watermark">
+        </div>
+        <div class="hero-content">
+            <div class="hero-layout">
+                <div class="hero-copy">
+                    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Enterprise-ready IT services for bold brands
+                    </div>
+                    <h1>
+                        <span data-i18n="hero_title1">Инновационные</span>
+                        <span class="gradient-text" data-i18n="hero_title2">IT-решения</span><br>
+                        <span data-i18n="hero_title3">для вашего бизнеса</span>
+                    </h1>
+                    <p data-i18n="hero_subtitle">Создаём современные цифровые продукты, которые трансформируют индустрии
+                    </p>
+                    <div class="hero-highlights">
+                        <span data-i18n="hero_highlight1">Архитектура класса Enterprise</span>
+                        <span data-i18n="hero_highlight2">Безопасность на каждом уровне</span>
+                        <span data-i18n="hero_highlight3">Оперативная поддержка 24/7</span>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn-primary" data-i18n="hero_btn1">Начать проект</a>
+                        <a href="#services" class="btn-secondary" data-i18n="hero_btn2">Наши услуги</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="visual-glow"></div>
+                    <div class="visual-stack" id="heroStack">
+                        <div class="visual-card">
+                            <img class="vc-photo" src="images/11.jpg" alt="Команда Benelux">
+                            <div class="vc-overlay">
+                                <div class="vc-badge"><i class="fas fa-microchip"></i> AI Dev Team</div>
+                            </div>
+                        </div>
+
+                        <div class="visual-card">
+                            <img class="vc-photo" src="images/12.jpg" alt="Команда Benelux">
+                            <div class="vc-overlay">
+                                <div class="vc-badge"><i class="fas fa-users"></i> Benelux Culture</div>
+                            </div>
+                        </div>
+
+                        <div class="visual-card">
+                            <img class="vc-photo" src="images/13.jpg" alt="Команда Benelux">
+                            <div class="vc-overlay">
+                                <div class="vc-badge"><i class="fas fa-trophy"></i> DigiEduHack 2023</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2 class="section-title"><span data-i18n="services_title1">Наши</span> <span class="gradient-text"
+                data-i18n="services_title2">услуги</span></h2>
+        <div class="services-grid bento-grid">
+            <div class="service-card bento-item bento-item--feature" onclick="openModal('web')" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop');">
+                <div class="bento-overlay"></div>
+                <div class="service-content-bento">
+                    <div class="service-top">
+                        <span class="service-badge">01</span>
+                        <span class="service-icon"><i class="fas fa-laptop-code"></i></span>
+                    </div>
+                    <h3 data-i18n="service_web_title">Веб-разработка</h3>
+                    <p class="service-desc" data-i18n="service_web_desc">Создаём высокопроизводительные веб-приложения и сайты с современным дизайном.</p>
+                </div>
+            </div>
+                        <div class="service-card bento-item bento-item--wide" onclick="openModal('desktop')" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop');">
+                <div class="bento-overlay"></div>
+                <div class="service-content-bento">
+                    <div class="service-top">
+                        <span class="service-badge">02</span>
+                        <span class="service-icon"><i class="fas fa-desktop"></i></span>
+                    </div>
+                    <h3 data-i18n="service_desktop_title">Программы для настольных ПК</h3>
+                    <p class="service-desc" data-i18n="service_desktop_desc">Разрабатываем надежные и производительные десктопные приложения для автоматизации рабочих процессов.</p>
+                </div>
+            </div>
+            <div class="service-card bento-item bento-item--wide" onclick="openModal('mobile')" style="background-image: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1000&auto=format&fit=crop');">
+                <div class="bento-overlay"></div>
+                <div class="service-content-bento">
+                    <div class="service-top">
+                        <span class="service-badge">03</span>
+                        <span class="service-icon"><i class="fas fa-mobile-alt"></i></span>
+                    </div>
+                    <h3 data-i18n="service_mobile_title">Mobile Dev</h3>
+                    <p class="service-desc" data-i18n="service_mobile_desc">Разрабатываем интуитивные кроссплатформенные и нативные приложения для iOS и Android.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section" id="map">
+        <h2 class="section-title" data-i18n="map_title">Карта</h2>
+        <p class="map-subtitle" data-i18n="map_subtitle">Наше присутствие в Казахстане</p>
+        <div class="map-layout">
+            <div class="map-visual" aria-label="Интерактивная карта Казахстана">
+                <div id="kazakhstanMap" class="leaflet-map"></div>
+                <!-- Interactive Info Card -->
+                <div class="city-info-card" id="cityCard">
+                    <button class="city-card-close" id="cityCardClose"><i class="fas fa-times"></i></button>
+                    <div class="city-card-header">
+                        <img src="" alt="City photo" class="city-card-photo" id="cityCardPhoto">
+                        <div class="city-card-fallback" id="cityCardFallback">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                    <div class="city-card-body">
+                        <h3 id="cityCardName" class="city-card-name"></h3>
+                        <p class="city-card-detail" id="cityCardAddress"></p>
+                        <p class="city-card-detail" id="cityCardPhone"></p>
+                        <div id="cityCardDG"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-info">
+                <div class="map-info-grid">
+                    <div class="map-card">
+                        <h3 data-i18n="map_city_aktobe">Актобе</h3>
+                        <p data-i18n="map_aktobe_desc">Главный офис компании</p>
+                    </div>
+                    <div class="map-card">
+                        <h3 data-i18n="map_city_kostanay">Костанай</h3>
+                        <p data-i18n="map_kostanay_desc">Региональное представительство</p>
+                    </div>
+                    <div class="map-card">
+                        <h3 data-i18n="map_work_title">Работаем по всему Казахстану</h3>
+                        <p data-i18n="map_work_desc">Локальная поддержка клиентов</p>
+                    </div>
+                    <div class="map-card map-stats">
+                        <div class="stat-chip"><span>2</span> <small data-i18n="map_stat_offices">офиса</small></div>
+                        <div class="stat-chip"><span>15+</span> <small data-i18n="map_stat_clients">клиентов</small>
+                        </div>
+                        <div class="stat-chip"><span>100+</span> <small data-i18n="map_stat_projects">проектов</small>
+                        </div>
+                        <div class="stat-chip"><span>24/7</span> <small data-i18n="map_stat_support">поддержка</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-cta">
+                    <h3 data-i18n="map_cta_title">Свяжитесь с ближайшим офисом</h3>
+                    <a href="#contact" class="btn-primary" data-i18n="map_cta_btn">Получить консультацию</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <h2 class="section-title"><span data-i18n="projects_title1">Наши</span> <span class="gradient-text"
+                data-i18n="projects_title2">проекты</span></h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterProjects(event, 'all')" data-i18n="filter_all">Все
+                проекты</button>
+            <button class="filter-btn" onclick="filterProjects(event, 'web')"
+                data-i18n="filter_web">Веб-разработка</button>
+            <button class="filter-btn" onclick="filterProjects(event, 'mobile')"
+                data-i18n="filter_mobile">Мобильные</button>
+            <!--<button class="filter-btn" onclick="filterProjects(event, 'cloud')" data-i18n="filter_cloud">Облачные</button>
+            <button class="filter-btn" onclick="filterProjects(event, 'ai')" data-i18n="filter_ai">AI/ML</button>
+            <button class="filter-btn" onclick="filterProjects(event, 'bot')" data-i18n="filter_bot">Боты</button>-->
+        </div>
+        <div class="projects-grid">
+            <div class="project-card" data-category="web">
+                <div class="project-image">
+                    <img src="images/1.png" alt="Фото">
+                </div>
+                <div class="project-info">
+                    <span class="project-category" data-i18n="filter_web">Веб-разработка</span>
+                    <h3>Сайт компании Kasip</h3>
+                    <p data-i18n="project_fintech_desc">Сайт для бизнес парка Kasip со встроенной платформой для
+                        прохождения курсов по бизнесу
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Xampp</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="mobile">
+                <div class="project-image">
+                    <img src="images/2.png" alt="Фото">
+                </div>
+                <div class="project-info">
+                    <span class="project-category" data-i18n="filter_mobile">Мобильные</span>
+                    <h3>Iron Bars</h3>
+                    <p data-i18n="project_fitness_desc">Мобильное приложение для отслеживания тренировок с AI-тренером
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">TensorFlow</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="web">
+                <div class="project-image">
+                    <img src="images/3.png" alt="Фото">
+                </div>
+                <div class="project-info">
+                    <span class="project-category" data-i18n="filter_web">Веб-разработка</span>
+                    <h3>Ai-LessonPlanner</h3>
+                    <p data-i18n="project_dashboard_desc">Платформа для генерации учебного плана для проведения занятий ученикам и студентам</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML/CSS/JS</span>
+                        <span class="tech-tag">Google Forms</span>
+                        <span class="tech-tag">Google Ai</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="web">
+                <div class="project-image">
+                    <img src="images/5.png" alt="Фото">
+                </div>
+                <div class="project-info">
+                    <span class="project-category" data-i18n="filter_web">Веб-разработка</span>
+                    <h3>ИИ-консультант "Абитуриент"</h3>
+                    <p data-i18n="project_dashboard_desc">Голосовой ИИ-ассистент для приемной комиссии университета Жубанова</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Vite</span>
+                        <span class="tech-tag">Google Ai</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team" id="team">
+        <h2 class="team-header-title">Наша <span class="gold">команда</span></h2>
+        <div class="team-grid">
+            <!-- 1. CEO -->
+            <div class="team-member">
+                <div class="team-bg-pattern bg-ceo"></div>
+                <div class="team-avatar">
+                    <img src="images/team1.jpg" alt="Kirill">
+                </div>
+                <div class="team-status"><span class="status-dot status-green" style="background:#4CAF50"></span> Строит будущее</div>
+                <div class="team-name" data-i18n="team_member1_name">Кирилл Пилипенко</div>
+                <div class="team-role" data-i18n="team_member1_role">CEO & Основатель</div>
+                <div class="team-chips">
+                    <span class="team-chip">Strategy</span>
+                    <span class="team-chip">Leadership</span>
+                </div>
+                <p class="team-bio" data-i18n="team_member1_bio">Определяет вектор развития BENELUX и формирует команду экспертов.</p>
+            </div>
+
+            <!-- 2. Co-Leader -->
+            <div class="team-member">
+                <div class="team-bg-pattern bg-mgmt"></div>
+                <div class="team-avatar">
+                    <img src="images/team2.jpg" alt="Erlan">
+                </div>
+                <div class="team-status"><span class="status-dot" style="background:#2196F3"></span> Пишет код</div>
+                <div class="team-name" data-i18n="team_member2_name">Ерлан Аймуканов</div>
+                <div class="team-role" data-i18n="team_member2_role">Главный разработчик</div>
+                <div class="team-chips">
+                    <span class="team-chip">Tech Lead</span>
+                    <span class="team-chip">Fullstack</span>
+                </div>
+                <p class="team-bio" data-i18n="team_member2_bio">Контролирует работу команды разработчиков и самостоятельно разрабатывает ключевые продукты.</p>
+            </div>
+
+            <!-- 4. Security (Active) -->
+            <div class="team-member">
+                <div class="team-bg-pattern bg-sec"></div>
+                <div class="team-avatar">
+                    <img src="images/team3.jpg" alt="Vladislav">
+                </div>
+                <div class="team-status"><span class="status-dot" style="background:#FF9800"></span> Сканирует сеть</div>
+                <div class="team-name" data-i18n="team_member3_name">Владислав Тугуши</div>
+                <div class="team-role" data-i18n="team_member3_role">Cybersecurity Expert</div>
+                <div class="team-chips">
+                    <span class="team-chip">Pentesting</span>
+                    <span class="team-chip">OSINT</span>
+                </div>
+                <p class="team-bio" data-i18n="team_member3_bio">Обеспечивает защиту всех цифровых активов клиентов.</p>
+            </div>
+
+            <!-- 7. Designer -->
+            <div class="team-member">
+                <div class="team-bg-pattern bg-design"></div>
+                <div class="team-avatar">
+                    <img src="images/team6.jpg" alt="Mariam">
+                </div>
+                <div class="team-status"><span class="status-dot" style="background:#673AB7"></span> Кодит UI</div>
+                <div class="team-name" data-i18n="team_member6_name">Мариам Рогушева</div>
+                <div class="team-role" data-i18n="team_member6_role">Mobile App Developer</div>
+                <div class="team-chips">
+                    <span class="team-chip">Flutter</span>
+                    <span class="team-chip">React Native</span>
+                </div>
+                <p class="team-bio" data-i18n="team_member6_bio">Разрабатывает современные мобильные приложения для iOS и Android.</p>
+            </div>
+
+            <!-- 8. QA -->
+            <div class="team-member">
+                <div class="team-bg-pattern bg-qa"></div>
+                <div class="team-avatar">
+                    <img src="images/team7.jpg" alt="Natalya">
+                </div>
+                <div class="team-status"><span class="status-dot" style="background:#2196F3"></span> В переговорах</div>
+                <div class="team-name" data-i18n="team_member7_name">Наталья Ищенко</div>
+                <div class="team-role" data-i18n="team_member7_role">Со-руководитель</div>
+                <div class="team-chips">
+                    <span class="team-chip">Management</span>
+                    <span class="team-chip">Agile</span>
+                </div>
+                <p class="team-bio" data-i18n="team_member7_bio">Отвечает за эффективность внутренних процессов и успех проектов.</p>
+            </div>
+
+            <!-- 9. SMM -->
+            <div class="team-member">
+                <div class="team-bg-pattern bg-smm"></div>
+                <div class="team-avatar">
+                    <img src="images/team8.jpg" alt="Saltanat">
+                </div>
+                <div class="team-status"><span class="status-dot" style="background:#3F51B5"></span> Пишет пост</div>
+                <div class="team-name" data-i18n="team_member8_name">Салтанат Еркингали</div>
+                <div class="team-role" data-i18n="team_member8_role">SMM Specialist</div>
+                <div class="team-chips">
+                    <span class="team-chip">Social</span>
+                    <span class="team-chip">Content</span>
+                </div>
+                <p class="team-bio" data-i18n="team_member8_bio">Управляет присутствием в социальных сетях.</p>
+            </div>
+
+            <!-- 10. Translator -->
+            <div class="team-member">
+                <div class="team-bg-pattern bg-trans"></div>
+                <div class="team-avatar">
+                    <img src="images/team9.jpg" alt="Aknur">
+                </div>
+                <div class="team-status"><span class="status-dot" style="background:#009688"></span> Обучает модели</div>
+                <div class="team-name" data-i18n="team_member9_name">Акнур Аскарова</div>
+                <div class="team-role" data-i18n="team_member9_role">AI Specialist</div>
+                <div class="team-chips">
+                    <span class="team-chip">Machine Learning</span>
+                    <span class="team-chip">Data Science</span>
+                </div>
+                <p class="team-bio" data-i18n="team_member9_bio">Создает и внедряет интеллектуальные модели для автоматизации бизнес-процессов.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2><span data-i18n="about_title1">О компании</span> <span class="gradient-text">Benelux</span></h2>
+                <p data-i18n="about_text1">Мы — команда профессионалов, специализирующихся на разработке инновационных
+                    IT-решений. Наша миссия — помогать компаниям достигать своих целей через технологии.</p>
+                <p data-i18n="about_text2">С момента основания мы реализовали более 10 успешных проектов для клиентов
+                    по всему миру, от стартапов до крупных корпораций.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label" data-i18n="stat_projects">Завершённых проектов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label" data-i18n="stat_experts">Экспертов в команде</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label" data-i18n="stat_clients">Довольных клиентов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label" data-i18n="stat_support">Поддержка</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-hub-section" id="info-hub">
+        <div class="info-hub-container">
+            <div class="info-hub-grid">
+                <!-- Left Column: Process -->
+                <div class="info-hub-column process-column">
+                    <h2 class="section-title text-left">
+                        <span data-i18n="process_title1">Наш</span>
+                        <span class="gradient-text" data-i18n="process_title2">процесс</span>
+                    </h2>
+                    <div class="pulse-timeline">
+                        <div class="pulse-step">
+                            <div class="pulse-marker">01</div>
+                            <div class="pulse-content">
+                                <h3 data-i18n="step1_title">Аналитика</h3>
+                                <p data-i18n="step1_desc">Бизнес-анализ и формирование ТЗ.</p>
+                            </div>
+                        </div>
+                        <div class="pulse-step">
+                            <div class="pulse-marker">02</div>
+                            <div class="pulse-content">
+                                <h3 data-i18n="step2_title">Прототип</h3>
+                                <p data-i18n="step2_desc">UX-логика и дизайн-концепция.</p>
+                            </div>
+                        </div>
+                        <div class="pulse-step">
+                            <div class="pulse-marker">03</div>
+                            <div class="pulse-content">
+                                <h3 data-i18n="step3_title">Разработка</h3>
+                                <p data-i18n="step3_desc">Код, API и серверная часть.</p>
+                            </div>
+                        </div>
+                        <div class="pulse-step">
+                            <div class="pulse-marker">04</div>
+                            <div class="pulse-content">
+                                <h3 data-i18n="step4_title">Запуск</h3>
+                                <p data-i18n="step4_desc">QA-тесты и перенос на продакшн.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: FAQ -->
+                <div class="info-hub-column faq-column">
+                    <h2 class="section-title text-left">
+                        <span class="gradient-text" data-i18n="faq_title">Вопросы</span>
+                    </h2>
+                    <div class="faq-list-hub">
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <span class="faq-title" data-i18n="faq_q1">Сроки разработки?</span>
+                                <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-body">
+                                <p data-i18n="faq_a1">Лендинг от 7 дней, сложные системы от 1 месяца.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <span class="faq-title" data-i18n="faq_q2">Есть ли поддержка?</span>
+                                <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-body">
+                                <p data-i18n="faq_a2">Да, поддержка и мониторинг 24/7 после запуска.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-header">
+                                <span class="faq-title" data-i18n="faq_q3">Как платить?</span>
+                                <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-body">
+                                <p data-i18n="faq_a3">Работаем по системе 50/50 или по этапам (Milestones).</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-cta-block">
+                        <div class="faq-cta-icon"><i class="fas fa-comments"></i></div>
+                        <div class="faq-cta-text">
+                            <h4 class="gradient-text">Остались вопросы?</h4>
+                            <p>Напишите нам — ответим в течение часа</p>
+                        </div>
+                        <a href="#contact" class="faq-cta-btn">Связаться <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section" id="testimonials">
+        <h2 class="section-title"><span data-i18n="testimonials_title1">Что говорят</span> <span class="gradient-text" data-i18n="testimonials_title2">наши клиенты</span></h2>
+        <div class="testimonials-container-premium">
+            <div class="testimonial-card-premium">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p data-i18n="testimonial1_text">Сайт оставляет очень хорошее впечатление: современный дизайн, понятная структура и удобная навигация. Информация изложена чётко и логично, легко найти нужные разделы. Видно, что сайт продуман с точки зрения пользователя. При небольшом усилении продающих акцентов и доработке деталей можно смело довести до идеального уровня.</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar-premium">ГК</div>
+                    <div class="author-info">
+                        <h4 data-i18n="testimonial1_name">Гульдара Кенжегара</h4>
+                        <span class="author-role">Эксперт по маркетиингу, Kasip</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card-premium">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p data-i18n="testimonial2_text">Хочется выразить благодарность одному из разработчиков данной компании за профессионализм и отличную работу. Он с нуля создал сайт, который не только выглядит как современный лендинг, но и включает полноценную образовательную платформу. Всё работает стабильно: личные кабинеты, загрузка видеоуроков и материалов, отслеживание прогресса пользователей. Работать с ним было легко и комфортно — всегда на связи и решает задачи быстро. Спасибо за качественный результат!</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar-premium">МБ</div>
+                    <div class="author-info">
+                        <h4 data-i18n="testimonial2_name">Меруерт Бассен</h4>
+                        <span class="author-role">Со-руководитель и финансист, Kasip</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card-premium">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p data-i18n="testimonial3_text">Миграция нашей инфраструктуры в облако прошла безупречно благодаря экспертизе Benelux. Производительность выросла на 300%, а расходы снизились на 40%. Рекомендую!</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar-premium">ДП</div>
+                    <div class="author-info">
+                        <h4 data-i18n="testimonial3_name">Дмитрий Петров</h4>
+                        <span class="author-role">CTO, DataVision</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">
+            <span data-i18n="contact_title1">Свяжитесь</span> 
+            <span class="gradient-text" data-i18n="contact_title2">с нами</span>
+        </h2>
+        <p class="contact-subtitle" data-i18n="contact_subtitle">Готовы начать ваш проект? Заполните форму, и мы свяжемся с вами в ближайшее время</p>
+        
+        <div class="contact-container-premium">
+            <form class="contact-form-premium" id="contactForm">
+                <div class="form-group-premium">
+                    <label data-i18n="form_name">Имя</label>
+                    <input type="text" id="name" required placeholder="Ваше имя">
+                </div>
+                <div class="form-group-premium">
+                    <label>Email</label>
+                    <input type="email" id="email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group-premium">
+                    <label data-i18n="form_phone">Номер телефона</label>
+                    <input type="text" id="phone" required placeholder="+7 (___) ___-____">
+                </div>
+                <div class="form-group-premium">
+                    <label data-i18n="form_company">Компания</label>
+                    <input type="text" id="company" placeholder="Название компании">
+                </div>
+                <div class="form-group-premium">
+                    <label data-i18n="form_message">Сообщение</label>
+                    <textarea id="message" required placeholder="Как мы можем вам помочь?"></textarea>
+                </div>
+                <button type="submit" class="btn-primary-premium" data-i18n="form_submit">Отправить заявку</button>
+            </form>
+
+            <div class="contact-info-premium">
+                <div class="info-card-premium">
+                    <h3 class="info-title-premium">Полезная информация</h3>
+                    <div class="info-divider"></div>
+                    
+                    <div class="info-section-premium">
+                        <h4>Наши контакты</h4>
+                        <div class="info-item-premium">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Актобе, пр. Абулхайыр хана 52А</span>
+                        </div>
+                        <div class="info-item-premium">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+7 (702) 947 3930</span>
+                        </div>
+                        <div class="info-item-premium">
+                            <i class="fas fa-envelope"></i>
+                            <span>benelux.aktobe@bk.ru</span>
+                        </div>
+                    </div>
+
+                    <div class="info-section-premium">
+                        <h4>Почему мы?</h4>
+                        <div class="info-item-premium">
+                            <i class="fas fa-rocket"></i>
+                            <span>Быстрый старт проектов</span>
+                        </div>
+                        <div class="info-item-premium">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Enterprise безопасность</span>
+                        </div>
+                        <div class="info-item-premium">
+                            <i class="fas fa-headset"></i>
+                            <span>Поддержка 24/7</span>
+                        </div>
+                    </div>
+
+                    <div class="info-section-premium">
+                        <h4>Последние обновления</h4>
+                        <div class="update-chip-premium">АПРЕЛЬ 2026</div>
+                        <p class="update-text-premium">Запуск новой платформы Benelux AI Engine.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="success-message" id="successMessage" data-i18n="form_success">
+            ✅ Спасибо за заявку! Мы свяжемся с вами в ближайшее время.
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <div class="logo footer-logo">BENELUX</div>
+                <p class="footer-description" data-i18n="footer_desc">
+                    Мы создаем цифровые решения будущего. Инновационный подход к каждому проекту, от концепции до
+                    реализации.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h4 data-i18n="footer_nav_title">Навигация</h4>
+                <ul>
+                    <li><a href="#hero">Главная</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#projects">Проекты</a></li>
+                    <li><a href="#team">Команда</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4 data-i18n="footer_services_title">Услуги</h4>
+                <ul>
+                    <li><a href="#services">Веб-разработка</a></li>
+                    <li><a href="#services">Мобильные приложения</a></li>
+                    <li><a href="#services">AI & Machine Learning</a></li>
+                    <li><a href="#services">Аналитика данных</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4 data-i18n="footer_contact_title">Связаться</h4>
+                <div class="footer-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>benelux.aktobe@bk.ru</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+7 (702) 947 3930</span>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/benelux_aqtobe?igsh=MWJ3NTNwcTJ2bHpjaw==" class="social-link"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/beneluxtech" class="social-link"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                © 2026 Benelux. Все права защищены.
+            </div>
+            <div class="footer-legal">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Условия использования</a>
+            </div>
+            <div class="footer-watermark">
+                <img src="images/new-logo.png" alt="Benelux Watermark" class="watermark-logo">
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="serviceModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('serviceModal')">×</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+    <div class="floating-actions">
+        <a href="https://wa.me/77029473930" class="float-btn whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <button class="float-btn scroll-top" id="scrollTopBtn" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="JS/map.js"></script>
+    <script src="JS/main.js"></script>
+</body>
+
+</html>
+
